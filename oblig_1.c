@@ -11,8 +11,8 @@ int nrOfGuesses;
 /* Creating the file descriptor
    Read = [0], Write = [1] 
 */
-int p_Read_c_Write[2]; // Parent read || Child write
-int p_Write_c_Read[2];  // Parent write || Child read
+int parentRead[2]; // Parent read || Child write
+int childRead[2];  // Child read  || Parent write
 
 int main(int argc, char *argv[]) {
 
