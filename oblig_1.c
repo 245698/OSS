@@ -82,7 +82,7 @@ bool isParentProcess(int id) {
 int drawRandomInteger() { 
 
 	int randomnumber;
-    randomnumber = rand() % 1001;
+    randomnumber = rand() % 1000 + 1; //generates a random integer between 1 and 1000
     return randomnumber;
 	
 	}
