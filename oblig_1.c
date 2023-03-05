@@ -14,12 +14,14 @@
 int pipe_1[2]; // Parent read || Child write
 int pipe_2[2];  // Child read  || Parent write
 int nrOfGuesses;
+int drawnNumber;
 
 /* Function prototypes */
+int drawRandomInteger();
 bool forkSuccessful(int id);
 bool isChildProcess(int id);
 bool isParentProcess(int id);
-bool checkProcessStatus(int id);
+
 
 
 int main(int argc, char *argv[]) {
@@ -31,12 +33,14 @@ int main(int argc, char *argv[]) {
     */
     int id = fork();
 
-    getpid(); //returns the process id of it's caller
-    pipe(pipe_1); //
-    pipe(pipe_2);
-
     // checks if process is a child, return value is zero.
-    if ( isChildProcess(id) ){ printf("hello from child\n"); }
+    if ( isChildProcess(id) ) { 
+	
+		printf("hello from child\n");
+		drawnNumber = drawRandomInteger();
+		printf("%d\n",drawnNumber);
+		
+		}
         
   
     // checks if process is a parent, return value is non-zero.
@@ -55,8 +59,8 @@ bool forkSuccessful(int id) {
     
 }
 
-/* Checks if a process is child or parent.
-   Returns 1 (true) if id 
+/* Checks if a process is a child.
+   Returns 1 (true) if id
 */
 bool isChildProcess(int id) {
 
@@ -64,12 +68,29 @@ bool isChildProcess(int id) {
     else { return 0; }
 
 }
+/* Checks if a process is a parent.
+   Returns 1 (true) if id 
+*/
 bool isParentProcess(int id) {
 
     if (id >= 1) { return 1; }
     else { return 0; }
 
-
 }
 
-bool checkProcessStatus(int id){}
+
+int drawRandomInteger() { 
+
+	int randomnumber;
+    randomnumber = rand() % 1001;
+    return randomnumber;
+	
+	}
+  
+  /*
+    getpid(); //returns the process id of it's caller
+	getppid(); //returns the process id of it's callers parent
+    pipe(pipe_1); //
+    pipe(pipe_2);
+	
+	*/
